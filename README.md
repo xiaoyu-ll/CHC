@@ -15,6 +15,9 @@ This generalizes classical graph cliques: when all hyperedges have size 2, an η
 The goal of this artifact is to compute **maximum** CHCs (largest size) efficiently, using indexing and pruning strategies described in the paper.
 
 ## 2. Repository Structure
+
+```
+.
 ├── src/
 │   ├── max_basic.cpp
 │   ├── max_heap.cpp
@@ -25,6 +28,7 @@ The goal of this artifact is to compute **maximum** CHCs (largest size) efficien
 ├── dataset/
 │   └── (hypergraph datasets or download instructions)
 └── README.md
+```
 
 
 ## 3. Requirements
@@ -32,7 +36,6 @@ The goal of this artifact is to compute **maximum** CHCs (largest size) efficien
 - macOS / Linux
 - A C++17 compiler:
   - `g++ >= 9` or `clang++ >= 10` (C++17 supported)
-- (Optional) `cmake >= 3.10` if you choose to create a CMake build
 
 No external dependencies are expected beyond the C++ standard library unless your code explicitly requires them (please update this section if you use third-party libs).
 
@@ -52,6 +55,8 @@ c++ -O3 -std=c++17 -o bin/max_noindex      src/max_noindex.cpp
 c++ -O3 -std=c++17 -o bin/max_approx       src/max_approx.cpp
 c++ -O3 -std=c++17 -o bin/max_heap_eta     src/max_heap_eta.cpp
 c++ -O3 -std=c++17 -o bin/max_approx_eta   src/max_approx_eta.cpp
+```
+
 
 
 ## 5. Input Data Format
@@ -60,42 +65,20 @@ Expected dataset format (common hypergraph incidence format)
 
 Each hyperedge is represented by a list of vertex IDs (integers) on one line:
 v1 v2 v3 ...
-	•	One hyperedge per line.
-	•	Vertex IDs should be non-negative integers.
-	•	Repeated vertex IDs within a line should not appear (treat as a set).
 
-
-
-
-Dataset notes
-	•	If dataset/ is large (>100MB/file), do not push raw data to GitHub directly. Provide:
-	•	a download link in dataset/README.md, or
-	•	Git LFS tracking rules.
+- One hyperedge per line.
+- Vertex IDs should be non-negative integers.
+- Repeated vertex IDs within a line should not appear (treat as a set).
 
 ## 6. Usage
 
 This repository includes multiple executables, corresponding to different strategies described in the paper:
-	•	max_basic: basic CHC-index construction and maximum CHC query
-	•	max_heap: heap-accelerated CHC-index construction
-	•	max_noindex: baseline without index (for comparison)
-	•	max_approx: approximate index for faster runtime with comparable solution quality
-	•	*_eta: variants emphasizing η-related optimizations / η-peak interval logic (as in the paper)
 
-## 7. Reproducing Paper Experiments (Artifact Checklist)
+- `max_basic`: basic CHC-index construction and maximum CHC
+- `max_heap`: heap-accelerated CHC-index construction
+- `max_noindex`: baseline without index (for comparison)
+- `max_approx`: approximate index for faster runtime with comparable solution quality
+- `*_eta`: variants emphasizing η-related optimizations / η-peak interval logic (as in the paper)
 
-To help reviewers reproduce results efficiently, we recommend you provide:
-	1.	A list of datasets and how to obtain them
 
-	•	Put links and expected folder names in dataset/README.md.
-
-	2.	A script to run all methods consistently (recommended)
-
-	•	e.g., scripts/run_all.sh calling:
-	•	max_noindex, max_basic, max_heap, max_approx
-	•	multiple η values if needed
-
-	3.	A table of key parameters
-
-	•	η values used in experiments
-	•	any thresholds / maximum iterations / early stopping settings
 
