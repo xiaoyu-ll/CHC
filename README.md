@@ -3,7 +3,7 @@
 This repository provides a C++ implementation for the paper:
 
 **Mining and Visualizing Maximum Cohesive Hyper Clique**  
-Xiaoyu Leng, Hongchao Qin, Rong-Hua Li (Beijing Institute of Technology)
+
 
 The codebase focuses on mining **maximum cohesive hyper cliques (CHC)** in hypergraphs, and includes multiple implementations/indexing strategies, including basic construction, heap-accelerated construction, approximate indexing, and non-index baselines.
 
