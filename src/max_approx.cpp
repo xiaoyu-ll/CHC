@@ -133,9 +133,6 @@ void readedge()//读数据
                 pt=i;
                 string temps=strline.substr(ps,pt-ps);
                 tempv=stoi(temps);
-                // 原来：
-// hyperedge[ei].varr.push_back(tempv);
-// vertex[tempv].inc.push_back(ei);
 
 int idx_in_v = (int)vertex[tempv].inc.size();              // 该 eid 在 v.inc 里的位置
 vertex[tempv].inc.push_back(ei);
@@ -153,9 +150,6 @@ hyperedge[ei].inc_idx.push_back(idx_in_v);
         }
         string temps=strline.substr(ps,i-ps);
         tempv=stoi(temps);
-        // 原来：
-// hyperedge[ei].varr.push_back(tempv);
-// vertex[tempv].inc.push_back(ei);
 
 int idx_in_v = (int)vertex[tempv].inc.size();              // 该 eid 在 v.inc 里的位置
 vertex[tempv].inc.push_back(ei);
@@ -400,8 +394,6 @@ int buildindex_heap_level_saturate_refine_approx()
             if (vertex[v].sigma == 0) {
                 push_update(v, cand); // exact wrt uu
             } else {
-                // ★ 近似更新：仍然要求 cand >= level（与你原来一致，避免大量小提升拖慢）
-                // 但一旦 promoted 后 cand 会是“更真实的 co(uu,v)”，所以更贴近精确曲线
                 if (cand >= level) push_update(v, cand);
             }
         }
