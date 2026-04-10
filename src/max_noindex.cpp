@@ -134,9 +134,7 @@ void readedge()//读数据
                 pt=i;
                 string temps=strline.substr(ps,pt-ps);
                 tempv=stoi(temps);
-                // 原来：
-// hyperedge[ei].varr.push_back(tempv);
-// vertex[tempv].inc.push_back(ei);
+
 
 int idx_in_v = (int)vertex[tempv].inc.size();              // 该 eid 在 v.inc 里的位置
 vertex[tempv].inc.push_back(ei);
@@ -154,9 +152,6 @@ hyperedge[ei].inc_idx.push_back(idx_in_v);
         }
         string temps=strline.substr(ps,i-ps);
         tempv=stoi(temps);
-        // 原来：
-// hyperedge[ei].varr.push_back(tempv);
-// vertex[tempv].inc.push_back(ei);
 
 int idx_in_v = (int)vertex[tempv].inc.size();              // 该 eid 在 v.inc 里的位置
 vertex[tempv].inc.push_back(ei);
@@ -241,7 +236,6 @@ vector<int> collect_etas_noindex_all() {
 
 static inline void build_candidates_noindex(int eta, vector<int>& cand) {
     cand.clear();
-    // 你也可以 reserve 一个粗略值，比如 nodenum/10
     for (int v = 1; v <= nodenum; ++v) {
         if ((int)vertex[v].inc.size() >= eta) cand.push_back(v);
     }
@@ -523,11 +517,9 @@ vector<vector<int>> findmchc_noindex(
             }
         }
 
-        // 可选：对 ans 去重（和你现在一样）
+
         for (auto &cl : ans) sort(cl.begin(), cl.end());
         sort(ans.begin(), ans.end());
-        // 同步 etavec 去重比较麻烦：baseline里你也可以先不去重，
-        // 或者改为 (eta, clique) pair 统一去重
     }
 
     return ans;
