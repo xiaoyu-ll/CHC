@@ -133,9 +133,6 @@ void readedge()//读数据
                 pt=i;
                 string temps=strline.substr(ps,pt-ps);
                 tempv=stoi(temps);
-                // 原来：
-// hyperedge[ei].varr.push_back(tempv);
-// vertex[tempv].inc.push_back(ei);
 
 int idx_in_v = (int)vertex[tempv].inc.size();              // 该 eid 在 v.inc 里的位置
 vertex[tempv].inc.push_back(ei);
@@ -153,9 +150,7 @@ hyperedge[ei].inc_idx.push_back(idx_in_v);
         }
         string temps=strline.substr(ps,i-ps);
         tempv=stoi(temps);
-        // 原来：
-// hyperedge[ei].varr.push_back(tempv);
-// vertex[tempv].inc.push_back(ei);
+
 
 int idx_in_v = (int)vertex[tempv].inc.size();              // 该 eid 在 v.inc 里的位置
 vertex[tempv].inc.push_back(ei);
@@ -230,7 +225,6 @@ int buildindex()
     vector<int> P;
     P.reserve(100000);
 
-    // inP: 防止重复入队（你原来用 sort+unique；这里 O(1) 去重）
     static vector<unsigned char> inP;
     if ((int)inP.size() < nodenum + 1) inP.assign(nodenum + 1, 0);
     else fill(inP.begin(), inP.begin() + (nodenum + 1), 0);
